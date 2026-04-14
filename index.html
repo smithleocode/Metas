@@ -6,143 +6,129 @@
   <title>Controle Leo Eslavo - Metas e Bônus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4f7ff;
-      --bg-2: #eaf0ff;
-      --surface: #ffffff;
-      --surface-2: #f9fbff;
-      --line: #d7e1ff;
-      --txt: #101a45;
-      --muted: #5f6c93;
-      --accent: #002ad6;
-      --accent-2: #24aceb;
-      --warn: #b64a1b;
-      --good: #0a7a4b;
-      --shadow: 0 10px 24px rgba(20, 45, 138, 0.12);
+      --bg: #f5f8ff;
+      --bg-soft: #edf3ff;
+      --card: #ffffff;
+      --line: #dbe5ff;
+      --text: #0f1b4d;
+      --muted: #6170a2;
+      --primary: #002ad6;
+      --primary-soft: #24aceb;
+      --ok: #0d7a4f;
+      --warn: #b65021;
+      --ok-bg: #e8f8f0;
+      --warn-bg: #fff2ea;
+      --shadow: 0 10px 26px rgba(14, 32, 110, 0.1);
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      color: var(--txt);
       font-family: Manrope, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(900px 500px at 8% -20%, rgba(0, 42, 214, 0.16), transparent 55%),
-        radial-gradient(700px 400px at 95% 0%, rgba(36, 172, 235, 0.18), transparent 50%),
-        linear-gradient(160deg, var(--bg), var(--bg-2));
+        radial-gradient(850px 480px at 8% -10%, rgba(0, 42, 214, 0.12), transparent 56%),
+        radial-gradient(680px 360px at 98% 0%, rgba(36, 172, 235, 0.16), transparent 48%),
+        linear-gradient(160deg, var(--bg), var(--bg-soft));
       min-height: 100vh;
-      padding: 20px;
+      padding: 18px;
     }
 
-    .shell {
-      max-width: 1200px;
+    .app {
+      max-width: 1160px;
       margin: 0 auto;
       display: grid;
       gap: 12px;
     }
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 16px;
+    .top {
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: linear-gradient(145deg, #ffffff 35%, #eef3ff 100%);
       box-shadow: var(--shadow);
-      animation: fadeUp 500ms ease;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
     }
 
-    .brand h1 {
-      margin: 0;
+    .title {
       font-family: Sora, sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      margin: 0;
       letter-spacing: -0.02em;
-      font-size: clamp(1.1rem, 2.1vw, 1.6rem);
-    }
-
-    .brand p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .pill {
-      border: 1px solid rgba(0, 42, 214, 0.22);
-      color: #00239e;
-      background: rgba(0, 42, 214, 0.08);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      white-space: nowrap;
     }
 
     .top-right {
       display: grid;
-      gap: 6px;
       justify-items: end;
+      gap: 4px;
     }
 
-    .now {
-      color: var(--muted);
-      font-size: 0.78rem;
+    .badge {
+      border: 1px solid #c8d7ff;
+      background: #eef3ff;
+      color: #1b3fcf;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .grid {
+    .now {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .layout {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
     }
 
     @media (min-width: 980px) {
-      .grid {
-        grid-template-columns: 420px 1fr;
-      }
+      .layout { grid-template-columns: 360px 1fr; }
     }
 
-    .card {
+    .panel,
+    .block {
+      background: var(--card);
       border: 1px solid var(--line);
-      background: linear-gradient(155deg, var(--surface), var(--surface-2));
       border-radius: 14px;
       box-shadow: var(--shadow);
     }
 
-    .panel {
-      padding: 14px;
-      animation: fadeUp 650ms ease;
-    }
+    .panel { padding: 14px; }
 
-    .panel h2 {
+    .panel h2,
+    .block h2 {
       margin: 0 0 12px;
       font-family: Sora, sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: -0.01em;
     }
 
-    .form-grid {
+    .form {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 9px;
     }
 
-    .field {
-      display: grid;
-      gap: 6px;
-    }
-
-    .field.wide { grid-column: span 2; }
+    .field { display: grid; gap: 5px; }
 
     label {
+      font-size: 0.72rem;
       color: var(--muted);
-      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       font-weight: 700;
@@ -150,204 +136,190 @@
 
     input {
       width: 100%;
-      border: 1px solid #c8d6ff;
-      border-radius: 12px;
-      padding: 11px 12px;
-      background: #f8fbff;
-      color: var(--txt);
-      font-size: 0.94rem;
-      transition: border-color 160ms ease, box-shadow 180ms ease;
+      border: 1px solid #cdd9ff;
+      border-radius: 10px;
+      padding: 10px 11px;
+      font-size: 0.92rem;
+      background: #fafcff;
+      color: var(--text);
     }
 
     input:focus {
       outline: none;
-      border-color: rgba(0, 42, 214, 0.55);
-      box-shadow: 0 0 0 4px rgba(0, 42, 214, 0.12);
+      border-color: #84a2ff;
+      box-shadow: 0 0 0 3px rgba(0, 42, 214, 0.13);
     }
 
     .toggle {
       display: flex;
       align-items: center;
       gap: 8px;
+      min-height: 40px;
+      padding-top: 2px;
       color: var(--muted);
       font-size: 0.78rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding-top: 4px;
     }
 
     .toggle input {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
+      accent-color: var(--primary);
       margin: 0;
-      accent-color: #002ad6;
     }
 
-    .content {
+    .main {
       display: grid;
       gap: 12px;
-      animation: fadeUp 760ms ease;
     }
 
-    .kpi-grid {
+    .kpis {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      padding: 14px;
+      padding: 12px;
     }
 
     @media (min-width: 760px) {
-      .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
 
     .kpi {
-      border: 1px solid var(--line);
+      border: 1px solid #dde6ff;
       border-radius: 12px;
-      padding: 10px;
       background: #fbfdff;
+      padding: 10px;
     }
 
     .kpi .k {
       color: var(--muted);
-      font-size: 0.72rem;
-      margin-bottom: 7px;
+      font-size: 0.7rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      font-weight: 700;
-    }
-
-    .kpi .v {
-      font-size: 1.02rem;
-      font-weight: 700;
-      font-family: Sora, sans-serif;
-      letter-spacing: -0.02em;
-    }
-
-    .bars {
-      display: grid;
-      gap: 10px;
-      padding: 0 12px 12px;
-    }
-
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.83rem;
       margin-bottom: 6px;
     }
 
+    .kpi .v {
+      font-family: Sora, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .progresses {
+      padding: 0 12px 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .p-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
     .bar {
-      height: 12px;
+      height: 10px;
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid #d5e0ff;
       background: #edf2ff;
+      border: 1px solid #d9e3ff;
     }
 
     .bar span {
       display: block;
       height: 100%;
-      transition: width 320ms ease;
+      transition: width 280ms ease;
     }
 
     .bar .fat { background: linear-gradient(90deg, #002ad6, #24aceb); }
-    .bar .plan { background: linear-gradient(90deg, #24aceb, #8fdcff); }
+    .bar .plan { background: linear-gradient(90deg, #24aceb, #88d5f7); }
 
     .status-wrap {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
       padding: 0 12px 12px;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr;
     }
 
     @media (min-width: 760px) {
-      .status-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .status-wrap { grid-template-columns: 1fr 1fr; }
     }
 
     .status {
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 0.82rem;
+      border-radius: 11px;
+      padding: 10px;
+      font-size: 0.8rem;
       font-weight: 700;
       border: 1px solid transparent;
     }
 
     .status.ok {
-      color: #05643d;
-      background: #e8f8f0;
-      border-color: #b9e8d1;
+      color: var(--ok);
+      background: var(--ok-bg);
+      border-color: #bae8d2;
     }
 
     .status.warn {
-      color: #9f3f15;
-      background: #fff1ea;
-      border-color: #ffd6c6;
+      color: var(--warn);
+      background: var(--warn-bg);
+      border-color: #ffd7c5;
     }
 
-    .charts {
-      padding: 12px;
+    .split {
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
+      padding: 12px;
     }
 
     @media (min-width: 760px) {
-      .charts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .charts .wide {
-        grid-column: 1 / -1;
-      }
+      .split { grid-template-columns: 1fr 1fr; }
     }
 
-    .chart-box {
-      border: 1px solid var(--line);
-      border-radius: 14px;
+    .mini {
+      border: 1px solid #dde6ff;
+      border-radius: 12px;
+      background: #fbfdff;
       padding: 10px;
-      background: #fcfdff;
     }
 
-    .chart-box p {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+    .mini .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px dashed #e6edff;
+      font-size: 0.82rem;
     }
 
-    .chart-wrap { height: 220px; }
-    .chart-box.wide .chart-wrap { height: 290px; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .mini .row:last-child { border-bottom: none; }
+    .mini .row span { color: var(--muted); }
+    .mini .row strong { color: var(--text); }
   </style>
 </head>
 <body>
-  <main class="shell">
-    <header class="topbar">
-      <div class="brand">
-        <h1>Controle Leo Eslavo</h1>
-      </div>
+  <main class="app">
+    <header class="top">
+      <h1 class="title">Controle Leo Eslavo</h1>
       <div class="top-right">
-        <span class="pill">AUTO COMISSÃO</span>
+        <span class="badge">Auto comissão</span>
         <div id="liveNow" class="now">--/--/---- --:--</div>
       </div>
     </header>
 
-    <section class="grid">
-      <aside class="card panel">
+    <section class="layout">
+      <aside class="panel">
         <h2>Entradas</h2>
-        <div class="form-grid">
+        <div class="form">
           <div class="field"><label for="metaFaturamento">Meta Faturamento (R$)</label><input id="metaFaturamento" type="number" step="0.01" value="180000"></div>
-          <div class="field"><label for="metaPlanos">Meta Planos (qtd)</label><input id="metaPlanos" type="number" step="1" value="18"></div>
+          <div class="field"><label for="metaPlanos">Meta Planos</label><input id="metaPlanos" type="number" step="1" value="18"></div>
 
-          <div class="field"><label for="realizadoFaturamento">Realizado Faturamento (R$)</label><input id="realizadoFaturamento" type="number" step="0.01" value="343131.76"></div>
-          <div class="field"><label for="planosFechados">Planos Fechados (qtd)</label><input id="planosFechados" type="number" step="1" value="28"></div>
+          <div class="field"><label for="realizadoFaturamento">Realizado Faturamento (R$)</label><input id="realizadoFaturamento" type="number" step="0.01" value="165000"></div>
+          <div class="field"><label for="planosFechados">Planos Fechados</label><input id="planosFechados" type="number" step="1" value="16"></div>
 
           <div class="field"><label for="bonusBase">Bônus Base por Gatilho (R$)</label><input id="bonusBase" type="number" step="0.01" value="2700"></div>
           <div class="field"><label for="dataRef">Data de Referência</label><input id="dataRef" type="date"></div>
@@ -360,27 +332,32 @@
         </div>
       </aside>
 
-      <div class="content">
-        <section class="card">
-          <div class="kpi-grid">
+      <div class="main">
+        <section class="block">
+          <div class="kpis">
             <div class="kpi"><div class="k">Esperado Faturamento</div><div id="kpiEsperadoFat" class="v">R$ 0,00</div></div>
             <div class="kpi"><div class="k">Gap Faturamento</div><div id="kpiGapFat" class="v">R$ 0,00</div></div>
+            <div class="kpi"><div class="k">Projeção Faturamento</div><div id="kpiProjFat" class="v">R$ 0,00</div></div>
+            <div class="kpi"><div class="k">Atingimento Faturamento</div><div id="kpiPctFat" class="v">0,00%</div></div>
+
             <div class="kpi"><div class="k">Esperado Planos</div><div id="kpiEsperadoPlan" class="v">0</div></div>
             <div class="kpi"><div class="k">Gap Planos</div><div id="kpiGapPlan" class="v">0</div></div>
+            <div class="kpi"><div class="k">Projeção Planos</div><div id="kpiProjPlan" class="v">0</div></div>
+            <div class="kpi"><div class="k">Atingimento Planos</div><div id="kpiPctPlan" class="v">0,00%</div></div>
 
+            <div class="kpi"><div class="k">Bônus Faturamento (Atual)</div><div id="kpiBonusFatAtual" class="v">R$ 0,00</div></div>
+            <div class="kpi"><div class="k">Bônus Planos (Atual)</div><div id="kpiBonusPlanAtual" class="v">R$ 0,00</div></div>
             <div class="kpi"><div class="k">Bônus Total Atual</div><div id="kpiComissaoAtual" class="v">R$ 0,00</div></div>
             <div class="kpi"><div class="k">Bônus Total Projetado</div><div id="kpiComissaoProj" class="v">R$ 0,00</div></div>
-            <div class="kpi"><div class="k">Projeção Faturamento</div><div id="kpiProjFat" class="v">R$ 0,00</div></div>
-            <div class="kpi"><div class="k">Projeção Planos</div><div id="kpiProjPlan" class="v">0</div></div>
           </div>
 
-          <div class="bars">
+          <div class="progresses">
             <div>
-              <div class="bar-label"><span>Atingimento faturamento (atual/proj)</span><span id="pctFat">0% / 0%</span></div>
+              <div class="p-label"><span>Faturamento (atual/projetado)</span><span id="pctFat">0% / 0%</span></div>
               <div class="bar"><span id="barFat" class="fat" style="width:0%"></span></div>
             </div>
             <div>
-              <div class="bar-label"><span>Atingimento planos (atual/proj)</span><span id="pctPlan">0% / 0%</span></div>
+              <div class="p-label"><span>Planos (atual/projetado)</span><span id="pctPlan">0% / 0%</span></div>
               <div class="bar"><span id="barPlan" class="plan" style="width:0%"></span></div>
             </div>
           </div>
@@ -391,18 +368,20 @@
           </div>
         </section>
 
-        <section class="card charts">
-          <div class="chart-box">
-            <p>Atual x Projetado x Meta</p>
-            <div class="chart-wrap"><canvas id="chartResumo"></canvas></div>
-          </div>
-          <div class="chart-box">
-            <p>Bônus por Gatilho</p>
-            <div class="chart-wrap"><canvas id="chartComissao"></canvas></div>
-          </div>
-          <div class="chart-box wide">
-            <p>Evolução no mês (faturamento)</p>
-            <div class="chart-wrap"><canvas id="chartEvolucao"></canvas></div>
+        <section class="block">
+          <div class="split">
+            <div class="mini">
+              <h2>Resumo Faturamento</h2>
+              <div class="row"><span>Meta</span><strong id="sumMetaFat">R$ 0,00</strong></div>
+              <div class="row"><span>Realizado</span><strong id="sumRealFat">R$ 0,00</strong></div>
+              <div class="row"><span>Falta para Meta</span><strong id="sumFaltaFat">R$ 0,00</strong></div>
+            </div>
+            <div class="mini">
+              <h2>Resumo Planos</h2>
+              <div class="row"><span>Meta</span><strong id="sumMetaPlan">0</strong></div>
+              <div class="row"><span>Fechados</span><strong id="sumRealPlan">0</strong></div>
+              <div class="row"><span>Falta para Meta</span><strong id="sumFaltaPlan">0</strong></div>
+            </div>
           </div>
         </section>
       </div>
@@ -410,15 +389,8 @@
   </main>
 
   <script>
-    const ids = [
-      "metaFaturamento", "metaPlanos", "realizadoFaturamento", "planosFechados", "bonusBase", "dataRef", "diasMes", "autoHoje"
-    ];
+    const ids = ["metaFaturamento", "metaPlanos", "realizadoFaturamento", "planosFechados", "bonusBase", "dataRef", "diasMes", "autoHoje"];
     const els = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
-    const charts = { resumo: null, comissao: null, evolucao: null };
-
-    function brl(value) {
-      return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value || 0);
-    }
 
     function num(value) {
       const n = Number(value);
@@ -429,12 +401,16 @@
       return Math.max(min, Math.min(max, v));
     }
 
-    function fmtPct(v) {
-      return `${(v * 100).toFixed(2)}%`;
+    function brl(value) {
+      return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value || 0);
     }
 
     function fmtNum(v) {
       return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(v || 0);
+    }
+
+    function fmtPct(v) {
+      return `${(v * 100).toFixed(2).replace('.', ',')}%`;
     }
 
     function setupDateDefaults() {
@@ -453,14 +429,17 @@
       return `${yyyy}-${mm}-${dd}`;
     }
 
+    function syncDaysFromDate() {
+      const d = new Date(`${els.dataRef.value}T00:00:00`);
+      if (!Number.isNaN(d.getTime())) {
+        els.diasMes.value = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+      }
+    }
+
     function updateLiveNow() {
       const now = new Date();
       document.getElementById("liveNow").textContent = now.toLocaleString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
+        day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit"
       });
 
       if (els.autoHoje.checked) {
@@ -471,161 +450,6 @@
           render();
         }
       }
-    }
-
-    function syncDaysFromDate() {
-      const d = new Date(`${els.dataRef.value}T00:00:00`);
-      if (!Number.isNaN(d.getTime())) {
-        els.diasMes.value = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-      }
-    }
-
-    function upsertChart(name, config) {
-      if (charts[name]) {
-        charts[name].data = config.data;
-        charts[name].options = config.options;
-        charts[name].update();
-        return;
-      }
-      charts[name] = new Chart(config.ctx, config);
-    }
-
-    function baseOptions() {
-      return {
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            labels: { color: "#49547a", font: { family: "Manrope", size: 12, weight: "600" } }
-          },
-          tooltip: {
-            backgroundColor: "rgba(255, 255, 255, 0.98)",
-            borderColor: "rgba(0, 42, 214, 0.2)",
-            borderWidth: 1,
-            titleColor: "#101a45",
-            bodyColor: "#2b3760"
-          }
-        }
-      };
-    }
-
-    function buildEvolucaoFat(metaFat, realizadoFat, projFat, diaAtual, diasMes) {
-      const labels = [];
-      const esperado = [];
-      const ritmo = [];
-      const proj = [];
-      const safeDay = Math.max(1, diaAtual);
-      const runRate = realizadoFat / safeDay;
-      const diasFuturos = Math.max(1, diasMes - safeDay);
-
-      for (let d = 1; d <= diasMes; d += 1) {
-        labels.push(d);
-        esperado.push((metaFat * d) / diasMes);
-        if (d <= safeDay) {
-          ritmo.push(runRate * d);
-          proj.push(d === safeDay ? realizadoFat : null);
-        } else {
-          ritmo.push(null);
-          proj.push(realizadoFat + ((d - safeDay) / diasFuturos) * (projFat - realizadoFat));
-        }
-      }
-      return { labels, esperado, ritmo, proj };
-    }
-
-    function renderCharts(data) {
-      const {
-        metaFat, metaPlan, realizadoFat, planosAtual, projFat, projPlan,
-        bonusFatAtual, bonusPlanAtual, bonusFatProj, bonusPlanProj,
-        diaAtual, diasMes
-      } = data;
-
-      const base = baseOptions();
-
-      upsertChart("resumo", {
-        ctx: document.getElementById("chartResumo"),
-        type: "bar",
-        data: {
-          labels: ["Faturamento", "Planos"],
-          datasets: [
-            { label: "Atual", data: [realizadoFat, planosAtual], backgroundColor: "#002ad6", borderRadius: 10 },
-            { label: "Projetado", data: [projFat, projPlan], backgroundColor: "#24aceb", borderRadius: 10 },
-            { label: "Meta", data: [metaFat, metaPlan], backgroundColor: "#a7b4de", borderRadius: 10 }
-          ]
-        },
-        options: {
-          ...base,
-          scales: {
-            x: { ticks: { color: "#57638b" }, grid: { display: false } },
-            y: {
-              beginAtZero: true,
-              ticks: { color: "#57638b" },
-              grid: { color: "rgba(87, 99, 139, 0.14)" }
-            }
-          }
-        }
-      });
-
-      upsertChart("comissao", {
-        ctx: document.getElementById("chartComissao"),
-        type: "bar",
-        data: {
-          labels: ["Faturamento", "Planos", "Total"],
-          datasets: [
-            {
-              label: "Bônus Atual",
-              data: [bonusFatAtual, bonusPlanAtual, bonusFatAtual + bonusPlanAtual],
-              backgroundColor: "#002ad6",
-              borderRadius: 8
-            },
-            {
-              label: "Bônus Projetado",
-              data: [bonusFatProj, bonusPlanProj, bonusFatProj + bonusPlanProj],
-              backgroundColor: "#24aceb",
-              borderRadius: 8
-            }
-          ]
-        },
-        options: {
-          ...base,
-          scales: {
-            x: { ticks: { color: "#57638b" }, grid: { display: false } },
-            y: {
-              beginAtZero: true,
-              ticks: { color: "#57638b", callback: (v) => brl(v) },
-              grid: { color: "rgba(87, 99, 139, 0.14)" }
-            }
-          }
-        }
-      });
-
-      const series = buildEvolucaoFat(metaFat, realizadoFat, projFat, diaAtual, diasMes);
-      upsertChart("evolucao", {
-        ctx: document.getElementById("chartEvolucao"),
-        type: "line",
-        data: {
-          labels: series.labels,
-          datasets: [
-            { label: "Esperado", data: series.esperado, borderColor: "#a7b4de", pointRadius: 0, borderWidth: 2, tension: 0.24 },
-            { label: "Ritmo atual", data: series.ritmo, borderColor: "#002ad6", pointRadius: 0, borderWidth: 2.4, tension: 0.24 },
-            { label: "Projeção", data: series.proj, borderColor: "#24aceb", pointRadius: 0, borderWidth: 2.4, borderDash: [6, 4], tension: 0.2 }
-          ]
-        },
-        options: {
-          ...base,
-          interaction: { mode: "index", intersect: false },
-          scales: {
-            x: {
-              ticks: { color: "#57638b" },
-              grid: { color: "rgba(87, 99, 139, 0.1)" },
-              title: { display: true, text: "Dia do mês", color: "#5f6c93" }
-            },
-            y: {
-              beginAtZero: true,
-              ticks: { color: "#57638b", callback: (v) => brl(v) },
-              grid: { color: "rgba(87, 99, 139, 0.14)" }
-            }
-          }
-        }
-      });
     }
 
     function render() {
@@ -645,6 +469,7 @@
       const gapFat = realizadoFat - esperadoFat;
       const gapPlan = planosAtual - esperadoPlan;
 
+      // Projecao por ritmo diario (igual comportamento de planilha por run-rate)
       const projFat = (realizadoFat / Math.max(1, diaAtual)) * diasMes;
       const projPlan = (planosAtual / Math.max(1, diaAtual)) * diasMes;
 
@@ -658,18 +483,23 @@
       const bonusFatProj = bonusBase * atingFatProj;
       const bonusPlanProj = bonusBase * atingPlanProj;
 
-      const comissaoAtual = bonusFatAtual + bonusPlanAtual;
-      const comissaoProj = bonusFatProj + bonusPlanProj;
+      const bonusAtual = bonusFatAtual + bonusPlanAtual;
+      const bonusProj = bonusFatProj + bonusPlanProj;
 
       document.getElementById("kpiEsperadoFat").textContent = brl(esperadoFat);
       document.getElementById("kpiGapFat").textContent = `${gapFat >= 0 ? "+" : ""}${brl(gapFat)}`;
+      document.getElementById("kpiProjFat").textContent = brl(projFat);
+      document.getElementById("kpiPctFat").textContent = fmtPct(atingFatAtual);
+
       document.getElementById("kpiEsperadoPlan").textContent = fmtNum(esperadoPlan);
       document.getElementById("kpiGapPlan").textContent = `${gapPlan >= 0 ? "+" : ""}${fmtNum(gapPlan)}`;
-
-      document.getElementById("kpiComissaoAtual").textContent = brl(comissaoAtual);
-      document.getElementById("kpiComissaoProj").textContent = brl(comissaoProj);
-      document.getElementById("kpiProjFat").textContent = brl(projFat);
       document.getElementById("kpiProjPlan").textContent = fmtNum(projPlan);
+      document.getElementById("kpiPctPlan").textContent = fmtPct(atingPlanAtual);
+
+      document.getElementById("kpiBonusFatAtual").textContent = brl(bonusFatAtual);
+      document.getElementById("kpiBonusPlanAtual").textContent = brl(bonusPlanAtual);
+      document.getElementById("kpiComissaoAtual").textContent = brl(bonusAtual);
+      document.getElementById("kpiComissaoProj").textContent = brl(bonusProj);
 
       document.getElementById("pctFat").textContent = `${fmtPct(atingFatAtual)} / ${fmtPct(atingFatProj)}`;
       document.getElementById("pctPlan").textContent = `${fmtPct(atingPlanAtual)} / ${fmtPct(atingPlanProj)}`;
@@ -694,20 +524,13 @@
         statusPlan.textContent = `Planos: ${fmtNum(Math.abs(gapPlan))} abaixo do esperado em ${diaAtual}/${diasMes}.`;
       }
 
-      renderCharts({
-        metaFat,
-        metaPlan,
-        realizadoFat,
-        planosAtual,
-        projFat,
-        projPlan,
-        bonusFatAtual,
-        bonusPlanAtual,
-        bonusFatProj,
-        bonusPlanProj,
-        diaAtual,
-        diasMes
-      });
+      document.getElementById("sumMetaFat").textContent = brl(metaFat);
+      document.getElementById("sumRealFat").textContent = brl(realizadoFat);
+      document.getElementById("sumFaltaFat").textContent = brl(Math.max(0, metaFat - realizadoFat));
+
+      document.getElementById("sumMetaPlan").textContent = fmtNum(metaPlan);
+      document.getElementById("sumRealPlan").textContent = fmtNum(planosAtual);
+      document.getElementById("sumFaltaPlan").textContent = fmtNum(Math.max(0, metaPlan - planosAtual));
     }
 
     setupDateDefaults();
