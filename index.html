@@ -57,6 +57,31 @@
       gap: 10px;
     }
 
+    .nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      border: 1px solid #c8d7ff;
+      background: #eef3ff;
+      color: #1b3fcf;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav a.active {
+      background: #002ad6;
+      color: #fff;
+      border-color: #002ad6;
+    }
+
     .title {
       font-family: Sora, sans-serif;
       font-size: clamp(1.05rem, 2vw, 1.45rem);
@@ -126,6 +151,12 @@
 
     .field { display: grid; gap: 5px; }
 
+    .field input[readonly] {
+      background: #f0f4ff;
+      color: #4f5f93;
+      cursor: not-allowed;
+    }
+
     label {
       font-size: 0.72rem;
       color: var(--muted);
@@ -166,6 +197,13 @@
       height: 15px;
       accent-color: var(--primary);
       margin: 0;
+    }
+
+    .mini-note {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-top: 2px;
     }
 
     .main {
@@ -304,6 +342,10 @@
 <body>
   <main class="app">
     <header class="top">
+      <div class="nav">
+        <a class="active" href="./index.html">Dashboard</a>
+        <a href="./lancamentos.html">Lançamentos</a>
+      </div>
       <h1 class="title">Controle Leo Eslavo</h1>
       <div class="top-right">
         <span class="badge">Auto comissão</span>
@@ -328,6 +370,11 @@
           <div class="field">
             <label for="autoHoje">Data automática</label>
             <div class="toggle"><input id="autoHoje" type="checkbox" checked><span>Usar dia atual</span></div>
+          </div>
+          <div class="field">
+            <label for="usarLancamentos">Fonte de realizado</label>
+            <div class="toggle"><input id="usarLancamentos" type="checkbox" checked><span>Usar lançamentos</span></div>
+            <div class="mini-note">Soma dos pedidos = realizado e quantidade = planos.</div>
           </div>
         </div>
       </aside>
@@ -389,7 +436,7 @@
   </main>
 
   <script>
-    const ids = ["metaFaturamento", "metaPlanos", "realizadoFaturamento", "planosFechados", "bonusBase", "dataRef", "diasMes", "autoHoje"];
+    const ids = ["metaFaturamento", "metaPlanos", "realizadoFaturamento", "planosFechados", "bonusBase", "dataRef", "diasMes", "autoHoje", "usarLancamentos"];
     const els = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
 
     function num(value) {
@@ -452,9 +499,32 @@
       }
     }
 
+    function getLancamentosSummary() {
+      try {
+        const raw = localStorage.getItem("leo_lancamentos");
+        if (!raw) return { totalValor: 0, totalPedidos: 0 };
+        const items = JSON.parse(raw);
+        if (!Array.isArray(items)) return { totalValor: 0, totalPedidos: 0 };
+        const totalValor = items.reduce((acc, item) => acc + num(item.valor), 0);
+        return { totalValor, totalPedidos: items.length };
+      } catch {
+        return { totalValor: 0, totalPedidos: 0 };
+      }
+    }
+
     function render() {
       const metaFat = Math.max(1, num(els.metaFaturamento.value));
       const metaPlan = Math.max(1, num(els.metaPlanos.value));
+      const usarLancamentos = !!els.usarLancamentos.checked;
+
+      const resumoLanc = getLancamentosSummary();
+      if (usarLancamentos) {
+        els.realizadoFaturamento.value = resumoLanc.totalValor.toFixed(2);
+        els.planosFechados.value = String(resumoLanc.totalPedidos);
+      }
+      els.realizadoFaturamento.readOnly = usarLancamentos;
+      els.planosFechados.readOnly = usarLancamentos;
+
       const realizadoFat = Math.max(0, num(els.realizadoFaturamento.value));
       const planosAtual = Math.max(0, num(els.planosFechados.value));
       const bonusBase = Math.max(0, num(els.bonusBase.value));
@@ -544,6 +614,10 @@
         if (id === "autoHoje") updateLiveNow();
         render();
       });
+    });
+
+    window.addEventListener("storage", (event) => {
+      if (event.key === "leo_lancamentos") render();
     });
   </script>
 </body>
