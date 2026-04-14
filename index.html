@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Hub - Metas e Bônus</title>
+  <title>Controle Leo Eslavo - Metas e Bônus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
@@ -39,10 +39,10 @@
     }
 
     .shell {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      gap: 16px;
+      gap: 12px;
     }
 
     .topbar {
@@ -50,9 +50,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 16px 18px;
+      padding: 14px 16px;
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 14px;
       background: linear-gradient(145deg, #ffffff 35%, #eef3ff 100%);
       box-shadow: var(--shadow);
       animation: fadeUp 500ms ease;
@@ -62,7 +62,7 @@
       margin: 0;
       font-family: Sora, sans-serif;
       letter-spacing: -0.02em;
-      font-size: clamp(1.1rem, 2.1vw, 1.8rem);
+      font-size: clamp(1.1rem, 2.1vw, 1.6rem);
     }
 
     .brand p {
@@ -99,7 +99,7 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 12px;
     }
 
     @media (min-width: 980px) {
@@ -111,12 +111,12 @@
     .card {
       border: 1px solid var(--line);
       background: linear-gradient(155deg, var(--surface), var(--surface-2));
-      border-radius: 18px;
+      border-radius: 14px;
       box-shadow: var(--shadow);
     }
 
     .panel {
-      padding: 16px;
+      padding: 14px;
       animation: fadeUp 650ms ease;
     }
 
@@ -186,7 +186,7 @@
 
     .content {
       display: grid;
-      gap: 16px;
+      gap: 12px;
       animation: fadeUp 760ms ease;
     }
 
@@ -203,8 +203,8 @@
 
     .kpi {
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 12px;
+      padding: 10px;
       background: #fbfdff;
     }
 
@@ -227,7 +227,7 @@
     .bars {
       display: grid;
       gap: 10px;
-      padding: 0 14px 14px;
+      padding: 0 12px 12px;
     }
 
     .bar-label {
@@ -259,7 +259,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 8px;
-      padding: 0 14px 14px;
+      padding: 0 12px 12px;
     }
 
     @media (min-width: 760px) {
@@ -269,7 +269,7 @@
     .status {
       border-radius: 12px;
       padding: 12px;
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       font-weight: 700;
       border: 1px solid transparent;
     }
@@ -287,7 +287,7 @@
     }
 
     .charts {
-      padding: 14px;
+      padding: 12px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
@@ -312,7 +312,7 @@
     .chart-box p {
       margin: 0 0 8px;
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -331,7 +331,7 @@
   <main class="shell">
     <header class="topbar">
       <div class="brand">
-        <h1>Control Hub</h1>
+        <h1>Controle Leo Eslavo</h1>
       </div>
       <div class="top-right">
         <span class="pill">AUTO COMISSÃO</span>
@@ -368,8 +368,8 @@
             <div class="kpi"><div class="k">Esperado Planos</div><div id="kpiEsperadoPlan" class="v">0</div></div>
             <div class="kpi"><div class="k">Gap Planos</div><div id="kpiGapPlan" class="v">0</div></div>
 
-            <div class="kpi"><div class="k">Comissão Atual (Auto)</div><div id="kpiComissaoAtual" class="v">R$ 0,00</div></div>
-            <div class="kpi"><div class="k">Comissão Projetada (Auto)</div><div id="kpiComissaoProj" class="v">R$ 0,00</div></div>
+            <div class="kpi"><div class="k">Bônus Total Atual</div><div id="kpiComissaoAtual" class="v">R$ 0,00</div></div>
+            <div class="kpi"><div class="k">Bônus Total Projetado</div><div id="kpiComissaoProj" class="v">R$ 0,00</div></div>
             <div class="kpi"><div class="k">Projeção Faturamento</div><div id="kpiProjFat" class="v">R$ 0,00</div></div>
             <div class="kpi"><div class="k">Projeção Planos</div><div id="kpiProjPlan" class="v">0</div></div>
           </div>
@@ -393,11 +393,11 @@
 
         <section class="card charts">
           <div class="chart-box">
-            <p>Atual x Projetado x Meta (2 Gatilhos)</p>
+            <p>Atual x Projetado x Meta</p>
             <div class="chart-wrap"><canvas id="chartResumo"></canvas></div>
           </div>
           <div class="chart-box">
-            <p>Comissão por Gatilho</p>
+            <p>Bônus por Gatilho</p>
             <div class="chart-wrap"><canvas id="chartComissao"></canvas></div>
           </div>
           <div class="chart-box wide">
@@ -431,6 +431,10 @@
 
     function fmtPct(v) {
       return `${(v * 100).toFixed(2)}%`;
+    }
+
+    function fmtNum(v) {
+      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(v || 0);
     }
 
     function setupDateDefaults() {
@@ -511,17 +515,17 @@
       const proj = [];
       const safeDay = Math.max(1, diaAtual);
       const runRate = realizadoFat / safeDay;
-      const deltaProj = Math.max(0, projFat - realizadoFat);
       const diasFuturos = Math.max(1, diasMes - safeDay);
 
       for (let d = 1; d <= diasMes; d += 1) {
         labels.push(d);
         esperado.push((metaFat * d) / diasMes);
-        ritmo.push(runRate * d);
         if (d <= safeDay) {
-          proj.push(runRate * d);
+          ritmo.push(runRate * d);
+          proj.push(d === safeDay ? realizadoFat : null);
         } else {
-          proj.push(realizadoFat + ((d - safeDay) / diasFuturos) * deltaProj);
+          ritmo.push(null);
+          proj.push(realizadoFat + ((d - safeDay) / diasFuturos) * (projFat - realizadoFat));
         }
       }
       return { labels, esperado, ritmo, proj };
@@ -567,13 +571,13 @@
           labels: ["Faturamento", "Planos", "Total"],
           datasets: [
             {
-              label: "Comissão Atual",
+              label: "Bônus Atual",
               data: [bonusFatAtual, bonusPlanAtual, bonusFatAtual + bonusPlanAtual],
               backgroundColor: "#002ad6",
               borderRadius: 8
             },
             {
-              label: "Comissão Projetada",
+              label: "Bônus Projetado",
               data: [bonusFatProj, bonusPlanProj, bonusFatProj + bonusPlanProj],
               backgroundColor: "#24aceb",
               borderRadius: 8
@@ -641,8 +645,8 @@
       const gapFat = realizadoFat - esperadoFat;
       const gapPlan = planosAtual - esperadoPlan;
 
-      const projFat = Math.max(realizadoFat, realizadoFat + (metaFat - esperadoFat));
-      const projPlan = Math.max(planosAtual, planosAtual + (metaPlan - esperadoPlan));
+      const projFat = (realizadoFat / Math.max(1, diaAtual)) * diasMes;
+      const projPlan = (planosAtual / Math.max(1, diaAtual)) * diasMes;
 
       const atingFatAtual = realizadoFat / metaFat;
       const atingPlanAtual = planosAtual / metaPlan;
@@ -659,13 +663,13 @@
 
       document.getElementById("kpiEsperadoFat").textContent = brl(esperadoFat);
       document.getElementById("kpiGapFat").textContent = `${gapFat >= 0 ? "+" : ""}${brl(gapFat)}`;
-      document.getElementById("kpiEsperadoPlan").textContent = esperadoPlan.toFixed(2);
-      document.getElementById("kpiGapPlan").textContent = `${gapPlan >= 0 ? "+" : ""}${gapPlan.toFixed(2)}`;
+      document.getElementById("kpiEsperadoPlan").textContent = fmtNum(esperadoPlan);
+      document.getElementById("kpiGapPlan").textContent = `${gapPlan >= 0 ? "+" : ""}${fmtNum(gapPlan)}`;
 
       document.getElementById("kpiComissaoAtual").textContent = brl(comissaoAtual);
       document.getElementById("kpiComissaoProj").textContent = brl(comissaoProj);
       document.getElementById("kpiProjFat").textContent = brl(projFat);
-      document.getElementById("kpiProjPlan").textContent = projPlan.toFixed(2);
+      document.getElementById("kpiProjPlan").textContent = fmtNum(projPlan);
 
       document.getElementById("pctFat").textContent = `${fmtPct(atingFatAtual)} / ${fmtPct(atingFatProj)}`;
       document.getElementById("pctPlan").textContent = `${fmtPct(atingPlanAtual)} / ${fmtPct(atingPlanProj)}`;
@@ -684,10 +688,10 @@
       const statusPlan = document.getElementById("statusPlan");
       if (gapPlan >= 0) {
         statusPlan.className = "status ok";
-        statusPlan.textContent = `Planos: +${gapPlan.toFixed(2)} acima do esperado em ${diaAtual}/${diasMes}.`;
+        statusPlan.textContent = `Planos: +${fmtNum(gapPlan)} acima do esperado em ${diaAtual}/${diasMes}.`;
       } else {
         statusPlan.className = "status warn";
-        statusPlan.textContent = `Planos: ${Math.abs(gapPlan).toFixed(2)} abaixo do esperado em ${diaAtual}/${diasMes}.`;
+        statusPlan.textContent = `Planos: ${fmtNum(Math.abs(gapPlan))} abaixo do esperado em ${diaAtual}/${diasMes}.`;
       }
 
       renderCharts({
